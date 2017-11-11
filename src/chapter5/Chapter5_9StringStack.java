@@ -2,8 +2,8 @@ package chapter5;
 
 public class Chapter5_9StringStack implements Chapter5_9Stack{
 	private int size;
-	private int i=0;
-	private String []stack;
+	private int top;
+	private String[] stack;
 	
 	public int getSize() {
 		return size;
@@ -12,11 +12,12 @@ public class Chapter5_9StringStack implements Chapter5_9Stack{
 	public Chapter5_9StringStack(int size) {
 		stack= new String[size];
 		this.size=size;
+		top=0;
 	}
 	
 	@Override
 	public int length() {
-		return i;
+		return top;
 	}
 
 	@Override
@@ -26,16 +27,21 @@ public class Chapter5_9StringStack implements Chapter5_9Stack{
 
 	@Override
 	public String pop() {
-		return stack[i];
+			if(top==0) return null;
+			String s=stack[top];
+			top--;
+		
+		return s;
 	}
 
 	@Override
 	public boolean push(String val) {
-		if(i<size) {
-			stack[i]=val;
-			i++;
+		if(top==stack.length-1)return false;
+		else{
+			stack[top]=val;
+			top++;
 			return true;
-			}else return false;
+			} 
 	}
 
 }
